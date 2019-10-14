@@ -18,10 +18,19 @@ const PortalAPIService = {
       }
     })
     .then(res => {
-      if(!res.ok) {
+      if(res.ok) {
         return res.json()
       }
       throw new Error('Failed to generate new portal - please try again')
+    })
+  },
+  getPortalMessages(id) {
+    return fetch(`${config.API_ENDPOINT}/portal/${id}/messages`)
+    .then(res => {
+      if(res.ok) {
+        return res.json()
+      }
+      throw new Error('No messages found')
     })
   }
 }
