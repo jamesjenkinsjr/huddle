@@ -10,12 +10,13 @@ const PortalAPIService = {
       throw new Error('Failed to fetch portal - please try again')
     })
   },
-  createNewPortal() {
+  createNewPortal(data) {
     return fetch(`${config.API_ENDPOINT}/portal`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
-      }
+      },
+      body: JSON.stringify(data)
     })
     .then(res => {
       if(res.ok) {

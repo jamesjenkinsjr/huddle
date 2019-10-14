@@ -9,14 +9,17 @@ class App extends React.Component {
     super(props)
     this.state = {
       error: '',
-      portal: '',
+      portal: {},
       messages: [],
     }
   }
 
-  handlePortal = portalID => {
+  handlePortal = portal => {
     this.setState({
-      portal: portalID,
+      portal: {
+        id: portal.id,
+        name: portal.name
+      },
     })
   }
 

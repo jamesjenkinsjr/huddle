@@ -6,9 +6,13 @@ import PortalAPIService from '../services/portal-api-service'
 export default class Portal extends React.Component {
   state = {
     error: '',
+    loading: false,
   }
 
   handleRenderPortal = id => {
+    this.setState({
+      loading: true,
+    })
     PortalAPIService.getPortalByID(id)
       .then(portal => {
         if (!portal) {
@@ -16,12 +20,12 @@ export default class Portal extends React.Component {
             error: 'Portal does not exist',
           })
         }
-        this.props.handlePortal(id)
+        this.props.handlePortal(portal)
       })
       .then(() => {
         console.log('am i happening?')
         console.log(this.props.portal)
-        this.handleRenderMessages(this.props.portal)
+        this.handleRenderMessages(this.props.portal.id)
       })
       .catch(error =>
         this.setState({
@@ -34,6 +38,7 @@ export default class Portal extends React.Component {
       .then(messages => {
         console.log('am I now happening?')
         this.props.handleMessages(messages)
+        this.setState({ loading: false })
       })
       .catch(error => this.setState({ error: error.message }))
   }
@@ -50,11 +55,15 @@ export default class Portal extends React.Component {
         create_timestamp={new Date(message.create_timestamp).toLocaleString()}
       />
     ))
-    if (this.state.error === '') {
+    if (this.state.error === '' && this.state.loading) {
+      return <p>Loading Huddle...</p>
+    } else if (this.state.error === '') {
       return (
         <section>
-          <h1> Now viewing: {this.props.portal}</h1>
-          {this.props.messages.length > 0 && <ul className='portal__message-list'>{messages}</ul>}
+          <h1>{this.props.portal.name}</h1>
+          {this.props.messages.length > 0 && (
+            <ul className="portal__message-list">{messages}</ul>
+          )}
           {this.props.messages.length === 0 && <p>No messages found</p>}
         </section>
       )
