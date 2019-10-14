@@ -2,6 +2,7 @@ import React from 'react'
 import './Portal.css'
 import Message from '../Message/Message'
 import PortalAPIService from '../services/portal-api-service'
+import MessageForm from '../MessageForm/MessageForm'
 
 export default class Portal extends React.Component {
   state = {
@@ -23,8 +24,6 @@ export default class Portal extends React.Component {
         this.props.handlePortal(portal)
       })
       .then(() => {
-        console.log('am i happening?')
-        console.log(this.props.portal)
         this.handleRenderMessages(this.props.portal.id)
       })
       .catch(error =>
@@ -36,7 +35,6 @@ export default class Portal extends React.Component {
   handleRenderMessages = id => {
     PortalAPIService.getPortalMessages(id)
       .then(messages => {
-        console.log('am I now happening?')
         this.props.handleMessages(messages)
         this.setState({ loading: false })
       })
@@ -65,6 +63,7 @@ export default class Portal extends React.Component {
             <ul className="portal__message-list">{messages}</ul>
           )}
           {this.props.messages.length === 0 && <p>No messages found</p>}
+          <MessageForm handleNewMessage={this.props.handleNewMessage}/>
         </section>
       )
     } else {

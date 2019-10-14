@@ -1,0 +1,14 @@
+.portal__message-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.portal__message-form > label {
+  display: flex;
+  flex-direction: column;
+}
+
+.portal__message-form > button {
+  background-color: blue;
+  color: white;
+}

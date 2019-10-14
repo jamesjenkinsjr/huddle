@@ -9,7 +9,7 @@ export default class PortalForm extends React.Component {
   handleNewPortal = e => {
     e.preventDefault()
     const name = e.target.name.value
-    PortalAPIService.createNewPortal({name})
+    PortalAPIService.createNewPortal({ name })
       .then(portal => {
         this.props.handlePortal(portal)
       })
@@ -22,7 +22,7 @@ export default class PortalForm extends React.Component {
   }
   render() {
     return (
-      <form className='portal__form' onSubmit={e => this.handleNewPortal(e)}>
+      <form className="portal__form" onSubmit={e => this.handleNewPortal(e)}>
         <label htmlFor="name">
           Enter a Huddle name:
           <input type="text" name="name" id="name" required />

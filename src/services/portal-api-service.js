@@ -33,6 +33,21 @@ const PortalAPIService = {
       }
       throw new Error('No messages found')
     })
+  },
+  createPortalMessage(id, data) {
+    return fetch(`${config.API_ENDPOINT}/portal/${id}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if(res.ok) {
+        return res.json()
+      }
+      throw new Error('Message send failed - please try again')
+    })
   }
 }
 

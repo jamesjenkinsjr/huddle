@@ -29,6 +29,12 @@ class App extends React.Component {
     })
   }
 
+  handleNewMessage = message => {
+    this.setState({
+      messages: [...this.state.messages, message]
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -54,6 +60,7 @@ class App extends React.Component {
                 {...routeProps}
                 handlePortal={this.handlePortal}
                 handleMessages={this.handleMessages}
+                handleNewMessage={this.handleNewMessage}
                 portal={this.state.portal}
                 messages={this.state.messages}
               />
