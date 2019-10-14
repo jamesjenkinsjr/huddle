@@ -1,0 +1,5 @@
+.portal__message-list {
+  list-style-type: none;
+  max-height: 300px;
+  overflow: scroll;
+}

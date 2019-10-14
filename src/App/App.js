@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import './App.css'
 import PortalForm from '../PortalForm/PortalForm'
 import Portal from '../Portal/Portal'
@@ -13,25 +13,26 @@ class App extends React.Component {
       messages: [],
     }
   }
-  
+
   handlePortal = portalID => {
     this.setState({
-      portal: portalID
+      portal: portalID,
     })
   }
 
   handleMessages = data => {
     this.setState({
-      messages: data
+      messages: data,
     })
   }
-
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Huddle</h1>
+          <Link to="/">
+            <h1 className="portal__header">Huddle</h1>
+          </Link>
           <Route
             exact
             path="/"
