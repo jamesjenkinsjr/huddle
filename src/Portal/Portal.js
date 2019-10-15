@@ -40,9 +40,21 @@ export default class Portal extends React.Component {
       })
       .catch(error => this.setState({ error: error.message }))
   }
+  scrollToBottom = () => {
+    this.scrollEl.scrollIntoView({ behavior: 'auto' })
+  }
 
   componentDidMount() {
     this.handleRenderPortal(this.props.match.params.id)
+    if(this.scrollEl) {
+      this.scrollToBottom()
+    }
+  }
+
+  componentDidUpdate() {
+    if(this.scrollEl) {
+      this.scrollToBottom()
+    }
   }
   render() {
     const messages = this.props.messages.map(message => (
@@ -60,10 +72,19 @@ export default class Portal extends React.Component {
         <section>
           <h1>{this.props.portal.name}</h1>
           {this.props.messages.length > 0 && (
-            <ul className="portal__message-list">{messages}</ul>
+              <ul className="portal__message-list">
+              {messages}
+              <li
+                style={{ float: 'left', clear: 'both' }}
+                ref={el => this.scrollEl = el}
+              ></li>
+              </ul>
           )}
           {this.props.messages.length === 0 && <p>No messages found</p>}
-          <MessageForm handleNewMessage={this.props.handleNewMessage} portal_id={this.props.match.params.id}/>
+          <MessageForm
+            handleNewMessage={this.props.handleNewMessage}
+            portal_id={this.props.match.params.id}
+          />
         </section>
       )
     } else {
