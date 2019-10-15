@@ -7,13 +7,10 @@ import MessageForm from '../MessageForm/MessageForm'
 export default class Portal extends React.Component {
   state = {
     error: '',
-    loading: false,
+    loading: true,
   }
 
   handleRenderPortal = id => {
-    this.setState({
-      loading: true,
-    })
     PortalAPIService.getPortalByID(id)
       .then(portal => {
         if (!portal) {
@@ -45,17 +42,29 @@ export default class Portal extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({
+      loading: false
+    })
     this.handleRenderPortal(this.props.match.params.id)
-    if(this.scrollEl) {
+    this.interval = setInterval(
+      () => this.handleRenderPortal(this.props.match.params.id),
+      5000
+    )
+    if (this.scrollEl) {
       this.scrollToBottom()
     }
   }
 
   componentDidUpdate() {
-    if(this.scrollEl) {
+    if (this.scrollEl) {
       this.scrollToBottom()
     }
   }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   render() {
     const messages = this.props.messages.map(message => (
       <Message
@@ -65,20 +74,19 @@ export default class Portal extends React.Component {
         create_timestamp={new Date(message.create_timestamp).toLocaleString()}
       />
     ))
-    if (this.state.error === '' && this.state.loading) {
-      return <p>Loading Huddle...</p>
-    } else if (this.state.error === '') {
+    if (this.state.error === '') {
       return (
         <section>
           <h1>{this.props.portal.name}</h1>
-          {this.props.messages.length > 0 && (
-              <ul className="portal__message-list">
+          {this.state.loading && <p>Loading Huddle...</p>}
+          {this.props.messages.length > 0 && !this.state.loading && (
+            <ul className="portal__message-list">
               {messages}
               <li
                 style={{ float: 'left', clear: 'both' }}
-                ref={el => this.scrollEl = el}
+                ref={el => (this.scrollEl = el)}
               ></li>
-              </ul>
+            </ul>
           )}
           {this.props.messages.length === 0 && <p>No messages found</p>}
           <MessageForm
