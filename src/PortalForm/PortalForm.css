@@ -12,3 +12,7 @@
 .portal__form > label > select, input {
   background-color: white;
 }
+
+.portal__form--error {
+  color: red;
+}

@@ -16,10 +16,7 @@ class App extends React.Component {
 
   handlePortal = portal => {
     this.setState({
-      portal: {
-        id: portal.id,
-        name: portal.name
-      },
+      portal: {...portal},
     })
   }
 
