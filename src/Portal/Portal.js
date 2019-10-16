@@ -10,33 +10,6 @@ export default class Portal extends React.Component {
     loading: true,
   }
 
-  handleRenderPortal = id => {
-    PortalAPIService.getPortalByID(id)
-      .then(portal => {
-        if (!portal) {
-          this.setState({
-            error: 'Portal does not exist',
-          })
-        }
-        this.props.handlePortal(portal)
-      })
-      .then(() => {
-        this.handleRenderMessages(this.props.portal.id)
-      })
-      .catch(error =>
-        this.setState({
-          error: error.message,
-        })
-      )
-  }
-  handleRenderMessages = id => {
-    PortalAPIService.getPortalMessages(id)
-      .then(messages => {
-        this.props.handleMessages(messages)
-        this.setState({ loading: false })
-      })
-      .catch(error => this.setState({ error: error.message }))
-  }
   scrollToBottom = () => {
     this.scrollEl.scrollIntoView({ behavior: 'auto' })
   }
@@ -47,7 +20,7 @@ export default class Portal extends React.Component {
     })
     this.handleRenderPortal(this.props.match.params.id)
     this.interval = setInterval(
-      () => this.handleRenderPortal(this.props.match.params.id),
+      () => this.handleRenderMessages(this.props.match.params.id),
       5000
     )
     if (this.scrollEl) {
@@ -65,6 +38,52 @@ export default class Portal extends React.Component {
     clearInterval(this.interval)
   }
 
+  handleRenderPortal = (id, password = '') => {
+    PortalAPIService.getPortalByID(id, password)
+      .then(portal => {
+        if (!portal) {
+          this.setState({
+            error: 'Portal does not exist',
+          })
+        }
+        this.props.handlePortal(portal)
+      })
+      .then(() => {
+        this.handleRenderMessages(this.props.portal.id)
+      })
+      .catch(error => {
+        if(error.message === 'Unauthorized portal request') {
+          this.setState({
+            error: error.message,
+            gated: true,
+            validated: false
+          })
+        } else {
+        this.setState({
+          error: error.message,
+        })
+      }
+    })
+  }
+
+  handleRenderMessages = id => {
+    PortalAPIService.getPortalMessages(id)
+      .then(messages => {
+        this.props.handleMessages(messages)
+        this.setState({ loading: false })
+      })
+      .catch(error => this.setState({ error: error.message }))
+  }
+
+  handlePortalValidation = e => {
+    e.preventDefault()
+    const password = e.target.validate_password.value;
+    this.handleRenderPortal(this.props.match.params.id, password)
+    this.setState({
+      validated: true,
+      error: ''
+    })
+  }
   render() {
     const messages = this.props.messages.map(message => (
       <Message
@@ -74,7 +93,7 @@ export default class Portal extends React.Component {
         create_timestamp={new Date(message.create_timestamp).toLocaleString()}
       />
     ))
-    if (this.state.error === '') {
+    if (this.state.error === '' && (!this.state.gated || this.state.validated)) {
       return (
         <section>
           <h1>{this.props.portal.name}</h1>
@@ -94,6 +113,15 @@ export default class Portal extends React.Component {
             portal_id={this.props.match.params.id}
           />
         </section>
+      )
+    } else if(this.state.gated && !this.state.validated) {
+      return (
+        <form onSubmit={this.handlePortalValidation}>
+          <label htmlFor="validate_password">
+            Enter password
+            <input type="password" name="validate_password" id="validate_password"/>
+          </label>
+        </form>
       )
     } else {
       return <h1>{this.state.error}</h1>

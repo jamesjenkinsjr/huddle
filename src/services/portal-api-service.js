@@ -1,11 +1,19 @@
 import config from '../config';
 
 const PortalAPIService = {
-  getPortalByID(id) {
-    return fetch(`${config.API_ENDPOINT}/portal/${id}`)
+  getPortalByID(id, password = '') {
+    return fetch(`${config.API_ENDPOINT}/portal/${id}`, {
+      method: 'GET',
+      headers: {
+        password: password
+      }
+    })
     .then(res => {
       if(res.ok) {
         return res.json()
+      }
+      if(res.status === 401) {
+        throw new Error('Unauthorized portal request')
       }
       throw new Error('Failed to fetch portal - please try again')
     })

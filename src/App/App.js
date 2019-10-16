@@ -16,7 +16,13 @@ class App extends React.Component {
 
   handlePortal = portal => {
     this.setState({
-      portal: {...portal},
+      portal: {
+        id: portal.id,
+        name: portal.name,
+        use_password: portal.use_password,
+        expiry_timestamp: portal.expiry_timestamp,
+        create_timestamp: portal.create_timestamp
+      },
     })
   }
 
