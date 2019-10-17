@@ -1,12 +1,11 @@
 import config from '../config'
+import TokenService from '../services/token-service'
 
 const MessageService = {
   addMessage: (data) => {
     return fetch(`${config.API_ENDPOINT}/message`, {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
+      headers: TokenService.addBearerIfPresent(),
       body: JSON.stringify(data)
     })
     .then(res => {
@@ -17,7 +16,10 @@ const MessageService = {
     })
   },
   getMessageByID: (id) => {
-    return fetch(`${config.API_ENDPOINT}/message/${id}`)
+    return fetch(`${config.API_ENDPOINT}/message/${id}`, {
+      method: 'GET',
+      headers: TokenService.addBearerIfPresent(),
+    })
     .then(res => {
       if(res.ok) {
         return res.json()

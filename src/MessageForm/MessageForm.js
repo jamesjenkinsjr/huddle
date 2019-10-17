@@ -13,7 +13,7 @@ export default class MessageForm extends React.Component {
     const newMessage = { author: author.value, content: content.value }
     newMessage.portal_id = this.props.portal_id
     MessageService.addMessage(newMessage)
-      .then(([message]) => {
+      .then((message) => {
         MessageService.getMessageByID(message.id)
         this.props.handleNewMessage(message)
         content.value = ''
