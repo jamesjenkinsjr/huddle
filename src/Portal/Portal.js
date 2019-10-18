@@ -154,7 +154,7 @@ export default class Portal extends React.Component {
       (!this.state.gated || TokenService.hasPortalToken(this.props.match.params.id))
     ) {
       return (
-        <section>
+        <section className='portal__container'>
           <h2>{this.props.portal.name}</h2>
           <button
             className="portal__close-session"
