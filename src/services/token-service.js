@@ -1,23 +1,23 @@
 import config from '../config'
 
 const TokenService = {
-  getPortalToken: () => {
-    return window.localStorage.getItem(config.TOKEN_KEY)
+  getPortalToken: id => {
+    return window.localStorage.getItem(`${config.TOKEN_KEY}-${id}`)
   },
-  hasPortalToken: () => {
-    return !!TokenService.getPortalToken()
+  hasPortalToken: id => {
+    return !!TokenService.getPortalToken(id)
   },
-  setPortalToken: token => {
-    window.localStorage.setItem(config.TOKEN_KEY, token)
+  setPortalToken: (id, token) => {
+    window.localStorage.setItem(`${config.TOKEN_KEY}-${id}`, token)
   },
-  clearPortalToken: () => {
-    window.localStorage.removeItem(config.TOKEN_KEY)
+  clearPortalToken: id => {
+    window.localStorage.removeItem(`${config.TOKEN_KEY}-${id}`)
   },
-  addBearerIfPresent: () => {
-    if (TokenService.hasPortalToken) {
+  addBearerIfPresent: id => {
+    if (TokenService.hasPortalToken(id)) {
       return {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${TokenService.getPortalToken()}`,
+        'Authorization': `Bearer ${TokenService.getPortalToken(id)}`,
       }
     } else {
       return {

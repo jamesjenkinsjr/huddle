@@ -9,7 +9,7 @@ export default class Portal extends React.Component {
   state = {
     error: '',
     loading: true,
-    gated: false
+    gated: false,
   }
 
   scrollToBottom = () => {
@@ -57,20 +57,18 @@ export default class Portal extends React.Component {
       .then(() => {
         /**
          * Check if portal does not require password before
-         * loading portal messages. If it does, render 
+         * loading portal messages. If it does, render
          * check that an auth token is set before attempting
          * intial message loading
          */
-        if (
-          !this.props.portal.use_password ||
-          TokenService.hasPortalToken()
-        ) {
+        if (!this.props.portal.use_password || TokenService.hasPortalToken(this.props.portal.id)) {
           this.handleRenderMessages(this.props.portal.id)
         }
       })
       .then(() => {
         this.setState({
           loading: false,
+          gated: this.props.portal.use_password,
         })
       })
       .catch(error => {
@@ -95,11 +93,11 @@ export default class Portal extends React.Component {
       /**
        * Depending on status of portal validation,
        * check for both props or local state to police
-       * messages loading.  
+       * messages loading.
        */
 
-      (this.props.portal.use_password || this.state.gated) 
-      && !TokenService.hasPortalToken()
+      (this.props.portal.use_password || this.state.gated) &&
+      !TokenService.hasPortalToken(this.props.match.params.id)
     ) {
       return
     }
@@ -119,7 +117,7 @@ export default class Portal extends React.Component {
       password,
     })
       .then(res => {
-        TokenService.setPortalToken(res.portalAuth)
+        TokenService.setPortalToken(this.props.match.params.id, res.portalAuth)
         this.setState({
           validated: true,
           error: '',
@@ -128,6 +126,17 @@ export default class Portal extends React.Component {
       .then(() => this.handleRenderPortal(this.props.match.params.id))
       .catch(error => this.setState({ error: error.message }))
   }
+
+  handleClosePortal = e => {
+    e.preventDefault()
+    if (this.state.gated) {
+      TokenService.clearPortalToken(this.props.portal.id)
+      this.handleRenderPortal(this.props.portal.id)
+    } else {
+      this.props.history.push('/')
+    }
+  }
+
   render() {
     const messages = this.props.messages.map(message => (
       <Message
@@ -140,11 +149,17 @@ export default class Portal extends React.Component {
     if (
       !this.state.loading &&
       this.state.error === '' &&
-      (!this.state.gated || TokenService.hasPortalToken())
+      (!this.state.gated || TokenService.hasPortalToken(this.props.match.params.id))
     ) {
       return (
         <section>
           <h1>{this.props.portal.name}</h1>
+          <button
+            className="portal__close-session"
+            onClick={this.handleClosePortal}
+          >
+            Exit Huddle
+          </button>
           {this.state.loading && <p>Loading Huddle...</p>}
           {this.props.messages.length > 0 && !this.state.loading && (
             <ul className="portal__message-list">
@@ -155,14 +170,14 @@ export default class Portal extends React.Component {
               ></li>
             </ul>
           )}
-          {this.props.messages.length === 0 && <p>No messages found</p>}
+          {this.props.messages.length === 0 && <p>No messages found.</p>}
           <MessageForm
             handleNewMessage={this.props.handleNewMessage}
             portal_id={this.props.match.params.id}
           />
         </section>
       )
-    } else if (this.state.gated && !TokenService.hasPortalToken()) {
+    } else if (this.state.gated && !TokenService.hasPortalToken(this.props.match.params.id)) {
       return (
         <form onSubmit={this.handlePortalValidation}>
           <label htmlFor="validate_password">

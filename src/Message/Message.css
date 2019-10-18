@@ -1,3 +1,5 @@
-.portal__message-item {
+.portal__message-item, .portal__message-item--collapsed {
   border: 2px solid white;
+  max-width: 300px;
+
 }

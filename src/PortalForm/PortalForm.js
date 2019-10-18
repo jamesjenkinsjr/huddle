@@ -118,11 +118,11 @@ export default class PortalForm extends React.Component {
       <form className="portal__form" onSubmit={e => this.handleNewPortal(e)}>
         {this.state.error !== '' && <p className='portal__form--error'>{this.state.error}</p>}
         <label htmlFor="name">
-          Enter a Huddle name:
+          Enter A Huddle Name:
           <input type="text" name="name" id="name" required />
         </label>
         <label htmlFor="password_toggle">
-          Use password?
+          Use Password?
           <input
             type="checkbox"
             name="password_toggle"
@@ -134,7 +134,7 @@ export default class PortalForm extends React.Component {
         {this.state.use_password && (
           <>
             <label htmlFor="password">
-              Enter password
+              Enter Password
               <input
                 type="password"
                 name="password"
@@ -144,7 +144,7 @@ export default class PortalForm extends React.Component {
               />
             </label>
             <label htmlFor="password_confirm">
-              Confirm password
+              Confirm Password
               <input
                 type="password"
                 name="password_confirm"

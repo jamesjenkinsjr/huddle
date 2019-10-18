@@ -2,15 +2,11 @@ import config from '../config'
 import TokenService from './token-service'
 
 const PortalAPIService = {
-  
   getPortalByID(id) {
-    return fetch(
-      `${config.API_ENDPOINT}/portal/${id}`,
-      {
-        method: 'GET',
-        headers: TokenService.addBearerIfPresent()
-      }
-    ).then(res => {
+    return fetch(`${config.API_ENDPOINT}/portal/${id}`, {
+      method: 'GET',
+      headers: TokenService.addBearerIfPresent(id),
+    }).then(res => {
       if (res.ok) {
         return res.json()
       }
@@ -23,7 +19,9 @@ const PortalAPIService = {
   createNewPortal(data) {
     return fetch(`${config.API_ENDPOINT}/portal`, {
       method: 'POST',
-      headers: TokenService.addBearerIfPresent(),
+      headers: {
+        'content-type': 'application/json'
+      },
       body: JSON.stringify(data),
     }).then(res => {
       if (res.ok) {
@@ -35,19 +33,18 @@ const PortalAPIService = {
   getPortalMessages(id) {
     return fetch(`${config.API_ENDPOINT}/portal/${id}/messages`, {
       method: 'GET',
-      headers: TokenService.addBearerIfPresent(),
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        throw new Error('No messages found')
+      headers: TokenService.addBearerIfPresent(id),
+    }).then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      throw new Error('No messages found')
     })
   },
   createPortalMessage(id, data) {
     return fetch(`${config.API_ENDPOINT}/portal/${id}`, {
       method: 'POST',
-      headers: TokenService.addBearerIfPresent(),
+      headers: TokenService.addBearerIfPresent(id),
       body: JSON.stringify(data),
     }).then(res => {
       if (res.ok) {

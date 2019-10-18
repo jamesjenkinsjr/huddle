@@ -3,3 +3,8 @@
   max-height: 300px;
   overflow: scroll;
 }
+
+.portal__close-session {
+  background-color: purple;
+  color: white;
+}

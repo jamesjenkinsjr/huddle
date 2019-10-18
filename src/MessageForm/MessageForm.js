@@ -14,7 +14,7 @@ export default class MessageForm extends React.Component {
     newMessage.portal_id = this.props.portal_id
     MessageService.addMessage(newMessage)
       .then((message) => {
-        MessageService.getMessageByID(message.id)
+        MessageService.getMessageByID(message.portal_id, message.id)
         this.props.handleNewMessage(message)
         content.value = ''
       })
