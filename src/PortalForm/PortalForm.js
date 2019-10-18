@@ -118,9 +118,40 @@ export default class PortalForm extends React.Component {
       <form className="portal__form" onSubmit={e => this.handleNewPortal(e)}>
         {this.state.error !== '' && <p className='portal__form--error'>{this.state.error}</p>}
         <label htmlFor="name">
-          Enter A Huddle Name:
+          Enter A Huddle Name*
           <input type="text" name="name" id="name" required />
         </label>
+        <label htmlFor="expiry_type">
+          Expiration Type*
+          <select
+            name="expiry_type"
+            id="expiry_type"
+            required
+            onChange={this.handleExpiryType}
+            value={this.state.expiry_type}
+          >
+            <option value="day">Day</option>
+            <option value="date">Date</option>
+          </select>
+        </label>
+        {this.state.expiry_type === 'day' && (
+          <label htmlFor="day_options">
+            Expires In
+            <select name="day_options" id="day_options">
+              <option value="day">1 Day</option>
+              <option value="week">1 Week</option>
+              <option value="2-weeks">2 Weeks</option>
+              <option value="month">1 Month</option>
+              <option value="3-months">3 Months</option>
+            </select>
+          </label>
+        )}
+        {this.state.expiry_type === 'date' && (
+          <label htmlFor="date">
+            Expires On
+            <input type="datetime-local" id="date" name="date" required></input>
+          </label>
+        )}
         <label htmlFor="password_toggle">
           Use Password?
           <input
@@ -154,36 +185,6 @@ export default class PortalForm extends React.Component {
               />
             </label>
           </>
-        )}
-        <label htmlFor="expiry_type">
-          Expire Type
-          <select
-            name="expiry_type"
-            id="expiry_type"
-            onChange={this.handleExpiryType}
-            value={this.state.expiry_type}
-          >
-            <option value="day">Day</option>
-            <option value="date">Date</option>
-          </select>
-        </label>
-        {this.state.expiry_type === 'day' && (
-          <label htmlFor="day_options">
-            Select Interval
-            <select name="day_options" id="day_options">
-              <option value="day">1 Day</option>
-              <option value="week">1 Week</option>
-              <option value="2-weeks">2 Weeks</option>
-              <option value="month">1 Month</option>
-              <option value="3-months">3 Months</option>
-            </select>
-          </label>
-        )}
-        {this.state.expiry_type === 'date' && (
-          <label htmlFor="date">
-            Select A Date
-            <input type="datetime-local" id="date" name="date"></input>
-          </label>
         )}
         <button type="submit" disabled={!this.state.validated}>Generate Portal</button>
       </form>
