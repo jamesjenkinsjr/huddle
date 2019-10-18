@@ -155,7 +155,7 @@ export default class Portal extends React.Component {
     ) {
       return (
         <section>
-          <h1>{this.props.portal.name}</h1>
+          <h2>{this.props.portal.name}</h2>
           <button
             className="portal__close-session"
             onClick={this.handleClosePortal}
