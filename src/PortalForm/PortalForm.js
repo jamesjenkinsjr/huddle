@@ -152,16 +152,19 @@ export default class PortalForm extends React.Component {
             <input type="datetime-local" id="date" name="date" required></input>
           </label>
         )}
-        <label htmlFor="password_toggle">
-          Use Password?
+        <div className="portal__form--password-container">
+          <label htmlFor="password_toggle" className='portal__form--checkbox'>
+            Use Password?
+          </label>
           <input
-            type="checkbox"
-            name="password_toggle"
-            id="password_toggle"
-            onChange={this.handlePasswordToggle}
-            checked={this.state.use_password}
-          />
-        </label>
+              type="checkbox"
+              name="password_toggle"
+              id="password_toggle"
+              className='portal__form--checkbox'
+              onChange={this.handlePasswordToggle}
+              checked={this.state.use_password}
+            />
+        </div>
         {this.state.use_password && (
           <>
             <label htmlFor="password">

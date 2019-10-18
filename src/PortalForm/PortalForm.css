@@ -1,16 +1,45 @@
 .portal__form {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 5px;
   color: white;
 }
 
 .portal__form > button {
   background-color: white;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-.portal__form > label > select, input {
+.portal__form > label {
+  width: 98%;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+.portal__form > label > select, 
+.portal__form > label > input {
   background-color: white;
+  width: 98%;
+  margin-top: 5px;
+  text-align: center;
+  text-align-last: center;
+}
+
+.portal__form--password-container {
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+label.portal__form--checkbox, input.portal__form--checkbox {
+  margin: 10px;
 }
 
 .portal__form--error {
