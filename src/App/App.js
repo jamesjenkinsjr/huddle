@@ -28,7 +28,7 @@ class App extends React.Component {
 
   handleMessages = data => {
     this.setState({
-      messages: data,
+      messages: data
     })
   }
 

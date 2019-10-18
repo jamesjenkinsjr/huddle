@@ -12,10 +12,6 @@ export default class Portal extends React.Component {
     gated: false,
   }
 
-  scrollToBottom = () => {
-    this.scrollEl.scrollIntoView({ behavior: 'auto' })
-  }
-
   componentDidMount() {
     this.setState({
       loading: false,
@@ -39,6 +35,10 @@ export default class Portal extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.interval)
+  }
+
+  scrollToBottom = () => {
+    this.scrollEl.scrollIntoView({ behavior: 'auto' })
   }
 
   handleRenderPortal = id => {
@@ -103,10 +103,12 @@ export default class Portal extends React.Component {
     }
     PortalAPIService.getPortalMessages(id)
       .then(messages => {
-        this.props.handleMessages(messages)
-        this.setState({ loading: false })
+        if(messages.length !== this.props.messages.length) {
+          this.props.handleMessages(messages)
+          this.setState({ loading: false })
+        }
       })
-      .catch(error => this.setState({ error: error.message }))
+      .catch(error => this.setState({ error: error.message, loading: false }))
   }
 
   handlePortalValidation = e => {

@@ -2,6 +2,7 @@
   list-style-type: none;
   max-height: 300px;
   overflow: scroll;
+  white-space: pre-line;
 }
 
 .portal__close-session {
