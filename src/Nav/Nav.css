@@ -8,5 +8,8 @@
 }
 
 .nav__list > a {
+  padding: 4px 2px;
   text-decoration: none;
+  border: 2px solid #6DD93B;
+  border-radius: 10px;
 }

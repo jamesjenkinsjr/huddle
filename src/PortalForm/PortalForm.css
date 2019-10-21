@@ -11,7 +11,7 @@
 
 .portal__form > button {
   background-color: #3e3740;
-  color: #d7d7d9;
+  color: #6DD93B;
   font-size: 18px;
   width: 90%;
   margin: 20px auto;
@@ -65,5 +65,5 @@ input.portal__form--checkbox {
 }
 
 .portal__form--error {
-  color: #A65735;
+  color: red;
 }
