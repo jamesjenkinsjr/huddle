@@ -7,9 +7,12 @@
   font-size: 24px;
 }
 
-.nav__list > a {
+.nav__list > li {
   padding: 4px 2px;
-  text-decoration: none;
   border: 2px solid #6DD93B;
   border-radius: 10px;
+}
+
+.nav__list > li > a {
+  text-decoration: none;
 }
