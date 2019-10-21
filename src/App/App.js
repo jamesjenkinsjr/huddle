@@ -45,10 +45,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Link to="/" onClick={() => this.handlePortal({})}>
+          <Link to="/">
             <h1 className="portal__header">Huddle</h1>
           </Link>
         </header>
+        {!this.state.error && (
+          <>
         <Route
           exact
           path={['/', '/huddle/about', '/huddle/how-to']}
@@ -81,6 +83,10 @@ class App extends React.Component {
             />
           )}
         />
+        </>)}
+        {this.state.error && (
+          <p className="App__error">{this.state.error}</p>
+        )}
       </div>
     )
   }

@@ -63,3 +63,8 @@ h2 {
 .portal__gate-form > label > input {
   margin-left: 5px;
 }
+
+.portal__error {
+  text-align: center;
+  color: #A65735
+}

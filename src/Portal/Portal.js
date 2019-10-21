@@ -193,7 +193,7 @@ export default class Portal extends React.Component {
         </form>
       )
     } else {
-      return <h1>{this.state.error}</h1>
+      return <h2 className="portal__error">{this.state.error}</h2>
     }
   }
 }
