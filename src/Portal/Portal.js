@@ -172,7 +172,7 @@ export default class Portal extends React.Component {
               ></li>
             </ul>
           )}
-          {this.props.messages.length === 0 && <p>No messages found.</p>}
+          {this.props.messages.length === 0 && <p className='portal__empty-messages'>No messages found.</p>}
           <MessageForm
             handleNewMessage={this.props.handleNewMessage}
             portal_id={this.props.match.params.id}

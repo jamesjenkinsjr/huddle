@@ -33,3 +33,7 @@ h2 {
   border-radius: 10px;
   padding: 10px;
 }
+
+.portal__empty-messages {
+  color: #D7D7D9;
+}

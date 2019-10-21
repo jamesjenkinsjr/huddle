@@ -50,7 +50,12 @@ export default class PortalForm extends React.Component {
     const name = e.target.name.value
     const { use_password, password = null } = this.state
 
-    PortalAPIService.createNewPortal({ name, expiry_timestamp, use_password, password })
+    PortalAPIService.createNewPortal({
+      name,
+      expiry_timestamp,
+      use_password,
+      password,
+    })
       .then(portal => {
         this.props.handlePortal(portal)
       })
@@ -69,6 +74,13 @@ export default class PortalForm extends React.Component {
     })
   }
 
+  generateTomorrowDatetime = () => {
+    let tomorrow = new Date()
+    let offset = tomorrow.getTimezoneOffset() * 60000
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    return new Date(tomorrow - offset).toISOString().slice(0, 16)
+  }
+
   handlePasswordToggle = e => {
     e.stopPropagation()
     this.setState({
@@ -77,12 +89,15 @@ export default class PortalForm extends React.Component {
   }
 
   validatePasswords = () => {
-    if(this.state.use_password && (this.state.password !== this.state.password_confirm)) {
+    if (
+      this.state.use_password &&
+      this.state.password !== this.state.password_confirm
+    ) {
       this.setState({
         error: 'Passwords must match',
-        validated: false
+        validated: false,
       })
-    } else if(this.state.password.length <= 3) {
+    } else if (this.state.password.length <= 3) {
       this.setState({
         error: 'Password must be greater than 3 characters',
         validated: false,
@@ -90,24 +105,24 @@ export default class PortalForm extends React.Component {
     } else {
       this.setState({
         error: '',
-        validated: true
+        validated: true,
       })
     }
-    return;
+    return
   }
   handleUpdatePasswords = e => {
     if (e.target.id === 'password') {
-    this.setState({
-      password: e.target.value,
-    })
-  } else {
-    this.setState({
-      password_confirm: e.target.value,
-    })
+      this.setState({
+        password: e.target.value,
+      })
+    } else {
+      this.setState({
+        password_confirm: e.target.value,
+      })
+    }
   }
-}
 
-  handlePassword = async (e) => {
+  handlePassword = async e => {
     e.preventDefault()
     await this.handleUpdatePasswords(e)
     await this.validatePasswords()
@@ -116,7 +131,9 @@ export default class PortalForm extends React.Component {
   render() {
     return (
       <form className="portal__form" onSubmit={e => this.handleNewPortal(e)}>
-        {this.state.error !== '' && <p className='portal__form--error'>{this.state.error}</p>}
+        {this.state.error !== '' && (
+          <p className="portal__form--error">{this.state.error}</p>
+        )}
         <label htmlFor="name">
           Enter A Huddle Name*
           <input type="text" name="name" id="name" required />
@@ -149,21 +166,27 @@ export default class PortalForm extends React.Component {
         {this.state.expiry_type === 'date' && (
           <label htmlFor="date">
             Expires On
-            <input type="datetime-local" id="date" name="date" required></input>
+            <input
+              type="datetime-local"
+              id="date"
+              name="date"
+              defaultValue={this.generateTomorrowDatetime()}
+              required
+            ></input>
           </label>
         )}
         <div className="portal__form--password-container">
-          <label htmlFor="password_toggle" className='portal__form--checkbox'>
+          <label htmlFor="password_toggle" className="portal__form--checkbox">
             Use Password?
           </label>
           <input
-              type="checkbox"
-              name="password_toggle"
-              id="password_toggle"
-              className='portal__form--checkbox'
-              onChange={this.handlePasswordToggle}
-              checked={this.state.use_password}
-            />
+            type="checkbox"
+            name="password_toggle"
+            id="password_toggle"
+            className="portal__form--checkbox"
+            onChange={this.handlePasswordToggle}
+            checked={this.state.use_password}
+          />
         </div>
         {this.state.use_password && (
           <>
@@ -189,7 +212,9 @@ export default class PortalForm extends React.Component {
             </label>
           </>
         )}
-        <button type="submit" disabled={!this.state.validated}>Generate Portal</button>
+        <button type="submit" disabled={!this.state.validated}>
+          Generate Portal
+        </button>
       </form>
     )
   }
