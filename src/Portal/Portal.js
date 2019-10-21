@@ -181,7 +181,7 @@ export default class Portal extends React.Component {
       )
     } else if (this.state.gated && !TokenService.hasPortalToken(this.props.match.params.id)) {
       return (
-        <form onSubmit={this.handlePortalValidation}>
+        <form className="portal__gate-form" onSubmit={this.handlePortalValidation}>
           <label htmlFor="validate_password">
             Enter password
             <input

@@ -13,17 +13,34 @@ h2 {
 
 .portal__message-list {
   list-style-type: none;
-  max-height: 300px;
+  height: 300px;
   overflow: scroll;
+  overflow-x: hidden;
   white-space: pre-line;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 90%;
-  margin: 10px;
+  margin: 10px auto;
   border: 2px solid #6DD93B;
   color: #D7D7D9;
+}
+
+.portal__message-list > li:nth-child(even) {
+  border-top: 1px solid #D7D7D9;
+  border-bottom: 1px solid #D7D7D9;
+}
+
+.portal__message-list > li {
+  width: 100%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.portal__message-list > li > p {
+  font-size: 12px;
+  word-wrap: break-word;
 }
 
 .portal__close-session {
@@ -31,9 +48,18 @@ h2 {
   color:#3E3740;
   border: 2px solid #6DD93B;
   border-radius: 10px;
-  padding: 10px;
+  padding: 6px;
 }
 
 .portal__empty-messages {
   color: #D7D7D9;
+  margin: 24px auto;
+}
+
+.portal__gate-form {
+  color: #D7D7D9;
+}
+
+.portal__gate-form > label > input {
+  margin-left: 5px;
 }
