@@ -13,15 +13,15 @@ h2 {
 
 .portal__message-list {
   list-style-type: none;
-  height: 300px;
-  overflow: scroll;
-  overflow-x: hidden;
+  max-height: 300px;
+  overflow: auto;
   white-space: pre-line;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 90%;
+  padding-top: 75px;
   margin: 10px auto;
   border: 2px solid #6DD93B;
   color: #D7D7D9;
@@ -33,9 +33,9 @@ h2 {
 }
 
 .portal__message-list > li {
-  width: 100%;
+  width: 98%;
   margin: 0 auto;
-  padding: 5px;
+  padding: 5px 0;
 }
 
 .portal__message-list > li > p {
