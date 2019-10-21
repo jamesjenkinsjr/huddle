@@ -4,14 +4,14 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  width: 90%;
-  margin: 5px;
+  margin: 10px;
   color: #d7d7d9;
 }
 
 .portal__form > button {
   background-color: #3e3740;
   color: #d7d7d9;
+  font-size: 18px;
   width: 90%;
   margin: 20px auto;
   border: 2px solid #6dd93b;
@@ -20,7 +20,8 @@
 }
 
 .portal__form > label {
-  width: 98%;
+  width: 100%;
+  margin: 0 auto;
   margin-bottom: 5px;
   padding-bottom: 5px;
 }

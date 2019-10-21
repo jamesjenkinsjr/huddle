@@ -1,8 +1,11 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
 import './App.css'
+import Nav from '../Nav/Nav'
 import PortalForm from '../PortalForm/PortalForm'
 import Portal from '../Portal/Portal'
+import About from '../About/About'
+import HowTo from '../HowTo/HowTo'
 
 class App extends React.Component {
   constructor(props) {
@@ -21,20 +24,20 @@ class App extends React.Component {
         name: portal.name,
         use_password: portal.use_password,
         expiry_timestamp: portal.expiry_timestamp,
-        create_timestamp: portal.create_timestamp
+        create_timestamp: portal.create_timestamp,
       },
     })
   }
 
   handleMessages = data => {
     this.setState({
-      messages: data
+      messages: data,
     })
   }
 
   handleNewMessage = message => {
     this.setState({
-      messages: [...this.state.messages, message]
+      messages: [...this.state.messages, message],
     })
   }
 
@@ -42,34 +45,42 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Link to="/">
+          <Link to="/" onClick={() => this.handlePortal({})}>
             <h1 className="portal__header">Huddle</h1>
           </Link>
-          <Route
-            exact
-            path="/"
-            render={routeProps => (
-              <PortalForm
-                {...routeProps}
-                handlePortal={this.handlePortal}
-                portal={this.state.portal}
-              />
-            )}
-          />
-          <Route
-            path="/:id"
-            render={routeProps => (
-              <Portal
-                {...routeProps}
-                handlePortal={this.handlePortal}
-                handleMessages={this.handleMessages}
-                handleNewMessage={this.handleNewMessage}
-                portal={this.state.portal}
-                messages={this.state.messages}
-              />
-            )}
-          />
         </header>
+        <Route
+          exact
+          path={['/', '/huddle/about', '/huddle/how-to']}
+          render={() => <Nav />}
+        />
+        <Route
+          exact
+          path="/"
+          render={routeProps => (
+            <PortalForm
+              {...routeProps}
+              handlePortal={this.handlePortal}
+              portal={this.state.portal}
+            />
+          )}
+        />
+        <Route exact path="/huddle/about" render={() => <About />} />
+        <Route exact path="/huddle/how-to" render={() => <HowTo />} />
+        <Route
+          exact
+          path="/:id"
+          render={routeProps => (
+            <Portal
+              {...routeProps}
+              handlePortal={this.handlePortal}
+              handleMessages={this.handleMessages}
+              handleNewMessage={this.handleNewMessage}
+              portal={this.state.portal}
+              messages={this.state.messages}
+            />
+          )}
+        />
       </div>
     )
   }

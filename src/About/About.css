@@ -1,0 +1,14 @@
+.about__container {
+  margin: 10px;
+  padding: 2px;
+}
+
+h2 {
+  margin: 10px auto;
+}
+p {
+  color: #d7d7d7;
+  font-size: 24px;
+  margin: 5px;
+  text-align: left;
+}

@@ -1,0 +1,12 @@
+.nav__list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+  font-size: 24px;
+}
+
+.nav__list > a {
+  text-decoration: none;
+}
