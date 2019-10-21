@@ -20,6 +20,7 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   width: 90%;
+  padding-top: 2em;
   margin: 10px auto;
   border: 2px solid #6DD93B;
   color: #D7D7D9;
@@ -65,4 +66,27 @@ h2 {
 .portal__error {
   text-align: center;
   color: red;
+}
+
+@media screen and (min-width: 768px) {
+
+  .portal__container {
+    flex-direction: unset;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .portal__container > h2 {
+    margin: 0;
+  }
+  .portal__message-list {
+    max-height: 450px;
+  }
+  .portal__empty-messages {
+    width: 100%;
+    text-align: center;
+  }
+  .portal__gate-form {
+    margin: 30% auto;
+  }
 }

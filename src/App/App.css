@@ -26,3 +26,10 @@ a {
   text-align: center;
   color: red
 }
+
+@media screen and (min-width: 768px) {
+  html {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
