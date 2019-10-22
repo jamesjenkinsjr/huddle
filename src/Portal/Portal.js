@@ -164,7 +164,6 @@ export default class Portal extends React.Component {
               Exit Huddle
             </button>
           </div>
-          {this.state.loading && <p>Loading Huddle...</p>}
           {this.props.messages.length > 0 && !this.state.loading && (
             <ul className="portal__message-list" tabIndex="0">
               {messages}
@@ -194,6 +193,8 @@ export default class Portal extends React.Component {
           </label>
         </form>
       )
+    } else if(this.state.loading && !this.state.error) {
+      return <h2 className="portal__loading-heading">Loading...</h2>
     } else {
       return <h2 className="portal__error">{this.state.error}</h2>
     }
