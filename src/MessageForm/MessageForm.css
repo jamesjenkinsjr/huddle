@@ -35,6 +35,10 @@
   border-radius: 5px;
 }
 
+.portal__message-form > label > textarea {
+  resize: none;
+}
+
 .portal__message-form > label > textarea:focus, 
 .portal__message-form > label > input:focus {
   outline: unset;
