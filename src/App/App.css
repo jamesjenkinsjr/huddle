@@ -16,10 +16,16 @@ html {
 h1 {
   color: #D7D7D9;
   font-size: 64px;
+  border-bottom: 5px solid #6DD93B;
+  display: inline;
 }
 
-a {
+.App-header {
+  margin: 50px auto;
+}
+.App-header > a {
   color: #6DD93B;
+  text-decoration: none;
 }
 
 .App__error {
@@ -35,12 +41,8 @@ a {
 }
 
 @media screen and (min-width: 1024px) {
-  html {
-    /* width: 40%; */
-  }
 
   h1 {
     font-size: 88px;
-    margin: 10px auto;
   }
 }
