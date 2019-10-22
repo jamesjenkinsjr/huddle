@@ -11,12 +11,12 @@ export default class Portal extends React.Component {
     messages: [],
     match: {
       params: {
-        id: ''
-      }
+        id: '',
+      },
     },
     history: {
-      push: () => {}
-    }
+      push: () => {},
+    },
   }
   state = {
     error: '',
@@ -73,7 +73,10 @@ export default class Portal extends React.Component {
          * check that an auth token is set before attempting
          * intial message loading
          */
-        if (!this.props.portal.use_password || TokenService.hasPortalToken(this.props.portal.id)) {
+        if (
+          !this.props.portal.use_password ||
+          TokenService.hasPortalToken(this.props.portal.id)
+        ) {
           this.handleRenderMessages(this.props.portal.id)
         }
       })
@@ -115,7 +118,7 @@ export default class Portal extends React.Component {
     }
     PortalAPIService.getPortalMessages(id)
       .then(messages => {
-        if(messages.length !== this.props.messages.length) {
+        if (messages.length !== this.props.messages.length) {
           this.props.handleMessages(messages)
           this.setState({ loading: false })
         }
@@ -163,12 +166,19 @@ export default class Portal extends React.Component {
     if (
       !this.state.loading &&
       this.state.error === '' &&
-      (!this.state.gated || TokenService.hasPortalToken(this.props.match.params.id))
+      (!this.state.gated ||
+        TokenService.hasPortalToken(this.props.match.params.id))
     ) {
       return (
-        <section className='portal__container'>
+        <section className="portal__container">
           <div className="portal__heading-container">
-            <h2>{this.props.portal.name}</h2>
+            <div>
+              <h2 className="portal__title">{this.props.portal.name}</h2>
+              <p className="portal__expiry-datetime">
+                Expires on{' '}
+                {new Date(this.props.portal.expiry_timestamp).toLocaleString()}
+              </p>
+            </div>
             <button
               className="portal__close-session"
               onClick={this.handleClosePortal}
@@ -185,16 +195,24 @@ export default class Portal extends React.Component {
               ></li>
             </ul>
           )}
-          {this.props.messages.length === 0 && <p className='portal__empty-messages'>No messages found.</p>}
+          {this.props.messages.length === 0 && (
+            <p className="portal__empty-messages">No messages found.</p>
+          )}
           <MessageForm
             handleNewMessage={this.props.handleNewMessage}
             portal_id={this.props.match.params.id}
           />
         </section>
       )
-    } else if (this.state.gated && !TokenService.hasPortalToken(this.props.match.params.id)) {
+    } else if (
+      this.state.gated &&
+      !TokenService.hasPortalToken(this.props.match.params.id)
+    ) {
       return (
-        <form className="portal__gate-form" onSubmit={this.handlePortalValidation}>
+        <form
+          className="portal__gate-form"
+          onSubmit={this.handlePortalValidation}
+        >
           <label htmlFor="validate_password">
             Enter password
             <input
@@ -205,7 +223,7 @@ export default class Portal extends React.Component {
           </label>
         </form>
       )
-    } else if(this.state.loading && !this.state.error) {
+    } else if (this.state.loading && !this.state.error) {
       return <h2 className="portal__loading-heading">Loading...</h2>
     } else {
       return <h2 className="portal__error">{this.state.error}</h2>
