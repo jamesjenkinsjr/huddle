@@ -15,12 +15,7 @@ h2 {
   max-height: 300px;
   overflow: auto;
   white-space: pre-line;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   width: 90%;
-  padding-top: 2em;
   margin: 10px auto;
   border: 2px solid #6DD93B;
   color: #D7D7D9;
@@ -37,22 +32,21 @@ h2 {
   padding: 5px 0;
 }
 
-.portal__message-list > li > p {
-  font-size: 12px;
-  word-wrap: break-word;
-}
-
 .portal__close-session {
   background-color: #83D95B;
   color:#3E3740;
   border: 2px solid #6DD93B;
   border-radius: 10px;
-  padding: 6px;
+  padding: 4px;
 }
 
 .portal__empty-messages {
+  width: 100%;
+  text-align: center;
   color: #D7D7D9;
   margin: 24px auto;
+  border: 2px solid #6DD93B;
+  padding: 5px 0;
 }
 
 .portal__gate-form {
@@ -82,11 +76,54 @@ h2 {
   .portal__message-list {
     max-height: 450px;
   }
-  .portal__empty-messages {
-    width: 100%;
-    text-align: center;
-  }
+  
   .portal__gate-form {
     margin: 30% auto;
   }
+}
+
+@media screen and (min-width: 1024px) {
+  .portal__heading-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 12px 0;
+    margin-left: 8%;
+  }
+
+  .portal__close-session {
+    margin-left: 10px;
+  }
+
+  .portal__empty-messages {
+    align-self: flex-start;
+    width: 55%;
+    height: 500px;
+    padding-top: 30px;
+  }
+
+  .portal__message-list {
+    list-style-type: none;
+    align-self: flex-start;
+    margin-bottom: 10%;
+    height: 500px;
+    width: 55%;
+  }
+
+  .portal__container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .portal__gate-form {
+    margin: 20% auto;
+  }
+
+  .portal__gate-form > label {
+    font-size: 18px;
+  }
+  .portal__gate-form > label > input {
+    padding: 6px;
+  }
+
 }

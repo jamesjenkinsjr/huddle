@@ -33,3 +33,14 @@ a {
     margin: 0 auto;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  html {
+    /* width: 40%; */
+  }
+
+  h1 {
+    font-size: 88px;
+    margin: 10px auto;
+  }
+}

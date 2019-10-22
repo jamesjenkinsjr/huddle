@@ -155,13 +155,15 @@ export default class Portal extends React.Component {
     ) {
       return (
         <section className='portal__container'>
-          <h2>{this.props.portal.name}</h2>
-          <button
-            className="portal__close-session"
-            onClick={this.handleClosePortal}
-          >
-            Exit Huddle
-          </button>
+          <div className="portal__heading-container">
+            <h2>{this.props.portal.name}</h2>
+            <button
+              className="portal__close-session"
+              onClick={this.handleClosePortal}
+            >
+              Exit Huddle
+            </button>
+          </div>
           {this.state.loading && <p>Loading Huddle...</p>}
           {this.props.messages.length > 0 && !this.state.loading && (
             <ul className="portal__message-list" tabIndex="0">

@@ -22,3 +22,17 @@
     padding: 12px 8px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .nav__list {
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+  .nav__list > li:hover {
+    background-color: #6DD93B;
+  }
+  .nav__list > li:hover > a {
+    color: #3E3740;
+  }
+}

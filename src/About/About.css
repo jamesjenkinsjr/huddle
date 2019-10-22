@@ -3,7 +3,7 @@
   padding: 2px;
 }
 
-h2 {
+.about__container > header > h2 {
   margin: 10px auto;
 }
 p {
@@ -11,4 +11,11 @@ p {
   font-size: 24px;
   margin: 5px;
   text-align: left;
+}
+
+@media screen and (min-width: 1024px) {
+  .about__container {
+    width: 50%;
+    margin: 0 auto;
+  }
 }

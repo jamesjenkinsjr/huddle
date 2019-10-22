@@ -55,3 +55,17 @@ label.portal__message-form--checkbox, input.portal__message-form--checkbox {
 .portal__message-form--error {
   color: red;
 }
+
+@media screen and (min-width: 1024px) {
+  .portal__message-form {
+    width: 30%;
+    height: 500px;
+    margin-bottom: 10%;
+  }
+
+  .portal__message-form > label > textarea {
+    height: 300px;
+    text-align: left;
+    text-align-last: left;
+  }
+}

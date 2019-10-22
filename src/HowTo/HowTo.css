@@ -23,3 +23,19 @@ ol.howto__overview > li > ul > li {
   font-size: 12px;
 }
 
+@media screen and (min-width: 1024px) {
+
+  .howto__container {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  ol.howto__overview > li > p {
+    font-size: 24px;
+  }
+  
+  ol.howto__overview > li > ul > li {
+    
+    font-size: 18px;
+  }
+}

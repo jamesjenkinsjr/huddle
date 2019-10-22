@@ -1,3 +1,18 @@
-/* .portal__message-item > p {
-  margin: 0 auto;
-} */
+p.portal__message-content {
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+p.portal__message-info {
+  font-size: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  p.portal__message-content {
+    font-size: 18px;
+  }
+
+  p.portal__message-info {
+    font-size: 12px;
+  }
+}
