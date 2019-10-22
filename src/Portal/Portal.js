@@ -6,6 +6,18 @@ import MessageForm from '../MessageForm/MessageForm'
 import TokenService from '../services/token-service'
 
 export default class Portal extends React.Component {
+  static defaultProps = {
+    portal: {},
+    messages: [],
+    match: {
+      params: {
+        id: ''
+      }
+    },
+    history: {
+      push: () => {}
+    }
+  }
   state = {
     error: '',
     loading: true,
