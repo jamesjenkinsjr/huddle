@@ -1,5 +1,4 @@
 import React from 'react'
-import './Portal.css'
 import Message from '../Message/Message'
 import PortalAPIService from '../services/portal-api-service'
 import MessageForm from '../MessageForm/MessageForm'

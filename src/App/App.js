@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
-import './App.css'
 import Nav from '../Nav/Nav'
 import PortalForm from '../PortalForm/PortalForm'
 import Portal from '../Portal/Portal'

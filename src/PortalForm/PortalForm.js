@@ -1,5 +1,4 @@
 import React from 'react'
-import './PortalForm.css'
 import PortalAPIService from '../services/portal-api-service'
 
 export default class PortalForm extends React.Component {

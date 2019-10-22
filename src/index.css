@@ -1,3 +1,10 @@
+html {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   margin: 0 auto;
   padding: 2px;
@@ -11,3 +18,4 @@ body {
 ul {
   padding: 0;
 }
+

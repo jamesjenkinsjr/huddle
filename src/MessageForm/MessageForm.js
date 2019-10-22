@@ -1,5 +1,4 @@
 import React from 'react'
-import './MessageForm.css'
 import MessageService from '../services/message-api-service'
 
 export default class MessageForm extends React.Component {

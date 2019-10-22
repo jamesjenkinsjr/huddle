@@ -1,5 +1,4 @@
 import React from 'react'
-import './HowTo.css'
 
 export default () => {
   return (
