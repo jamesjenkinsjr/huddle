@@ -1,4 +1,4 @@
 export default {
   API_ENDPOINT: process.env.REACT_APP_API_URL || 'http://localhost:8069/api',
-  TOKEN_KEY: 'huddle-auth'
+  TOKEN_KEY: 'huddle-auth',
 }

@@ -20,7 +20,7 @@ const PortalAPIService = {
     return fetch(`${config.API_ENDPOINT}/portal`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
       },
       body: JSON.stringify(data),
     }).then(res => {

@@ -17,7 +17,7 @@ const TokenService = {
     if (TokenService.hasPortalToken(id)) {
       return {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${TokenService.getPortalToken(id)}`,
+        Authorization: `Bearer ${TokenService.getPortalToken(id)}`,
       }
     } else {
       return {

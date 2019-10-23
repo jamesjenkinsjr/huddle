@@ -13,7 +13,7 @@ export default class MessageForm extends React.Component {
     const newMessage = { author: author.value, content: content.value }
     newMessage.portal_id = this.props.portal_id
     MessageService.addMessage(newMessage)
-      .then((message) => {
+      .then(message => {
         MessageService.getMessageByID(message.portal_id, message.id)
         this.props.handleNewMessage(message)
         content.value = ''
@@ -26,7 +26,7 @@ export default class MessageForm extends React.Component {
   }
 
   handleTextarea = e => {
-    if(!e.shiftKey && e.key === 'Enter') {
+    if (!e.shiftKey && e.key === 'Enter') {
       e.preventDefault()
       e.stopPropagation()
       this.submitButton.click()
@@ -35,10 +35,7 @@ export default class MessageForm extends React.Component {
 
   render() {
     return (
-      <form
-        className="portal__message-form"
-        onSubmit={this.handleSubmit}
-      >
+      <form className="portal__message-form" onSubmit={this.handleSubmit}>
         <label htmlFor="author">
           Name
           <input type="text" name="author" id="author" />
@@ -52,7 +49,9 @@ export default class MessageForm extends React.Component {
             required
           ></textarea>
         </label>
-        <button type="submit" ref={input => this.submitButton = input}>Submit</button>
+        <button type="submit" ref={input => (this.submitButton = input)}>
+          Submit
+        </button>
       </form>
     )
   }

@@ -51,42 +51,41 @@ class App extends React.Component {
         </header>
         {!this.state.error && (
           <>
-        <Route
-          exact
-          path={['/', '/huddle/about', '/huddle/how-to']}
-          render={() => <Nav />}
-        />
-        <Route
-          exact
-          path="/"
-          render={routeProps => (
-            <PortalForm
-              {...routeProps}
-              handlePortal={this.handlePortal}
-              portal={this.state.portal}
+            <Route
+              exact
+              path={['/', '/huddle/about', '/huddle/how-to']}
+              render={() => <Nav />}
             />
-          )}
-        />
-        <Route exact path="/huddle/about" render={() => <About />} />
-        <Route exact path="/huddle/how-to" render={() => <HowTo />} />
-        <Route
-          exact
-          path="/:id"
-          render={routeProps => (
-            <Portal
-              {...routeProps}
-              handlePortal={this.handlePortal}
-              handleMessages={this.handleMessages}
-              handleNewMessage={this.handleNewMessage}
-              portal={this.state.portal}
-              messages={this.state.messages}
+            <Route
+              exact
+              path="/"
+              render={routeProps => (
+                <PortalForm
+                  {...routeProps}
+                  handlePortal={this.handlePortal}
+                  portal={this.state.portal}
+                />
+              )}
             />
-          )}
-        />
-        </>)}
-        {this.state.error && (
-          <p className="App__error">{this.state.error}</p>
+            <Route exact path="/huddle/about" render={() => <About />} />
+            <Route exact path="/huddle/how-to" render={() => <HowTo />} />
+            <Route
+              exact
+              path="/:id"
+              render={routeProps => (
+                <Portal
+                  {...routeProps}
+                  handlePortal={this.handlePortal}
+                  handleMessages={this.handleMessages}
+                  handleNewMessage={this.handleNewMessage}
+                  portal={this.state.portal}
+                  messages={this.state.messages}
+                />
+              )}
+            />
+          </>
         )}
+        {this.state.error && <p className="App__error">{this.state.error}</p>}
       </div>
     )
   }

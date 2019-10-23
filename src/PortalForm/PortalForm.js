@@ -136,7 +136,7 @@ export default class PortalForm extends React.Component {
         )}
         <label htmlFor="name">
           Enter A Huddle Name*
-          <input type="text" name="name" id="name" maxLength='24' required />
+          <input type="text" name="name" id="name" maxLength="24" required />
         </label>
         <label htmlFor="expiry_type">
           Expiration Type*
