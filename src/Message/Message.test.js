@@ -16,7 +16,6 @@ describe('Message component', () => {
       create_timestamp: new Date('2019-10-23T16:09:09.303Z').toLocaleString(),
       portal_id: 'a7580f03-d358-4f3f-a5f8-6b69ba02d83a',
     }
-    console.log(props.create_timestamp)
     const wrapper = shallow(<Message {...props} />)
     expect(toJSON(wrapper)).toMatchSnapshot()
   })

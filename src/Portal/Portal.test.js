@@ -11,7 +11,6 @@ describe('Portal component', () => {
     expiry_timestamp: new Date('2019-10-24T16:09:09.303Z').toLocaleString(),
     use_password: false,
   }
-  console.log(portal.expiry_timestamp)
   const messages = [
     {
       author: 'Tim',
