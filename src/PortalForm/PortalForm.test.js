@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PortalForm from './PortalForm';
+import React from 'react'
+import { shallow } from 'enzyme'
+import toJSON from 'enzyme-to-json'
+import PortalForm from './PortalForm'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<PortalForm />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('PortalForm component', () => {
+  it('renders without crashing', () => {
+    const wrapper = shallow(<PortalForm />)
+    expect(toJSON(wrapper)).toMatchSnapshot()
+  })
+})

@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MessageForm from './MessageForm';
+import React from 'react'
+import { shallow } from 'enzyme'
+import toJSON from 'enzyme-to-json'
+import MessageForm from './MessageForm'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<MessageForm />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('MessageForm component', () => {
+  it('renders without crashing', () => {
+    const wrapper = shallow(<MessageForm />)
+    expect(toJSON(wrapper)).toMatchSnapshot()
+  })
+})

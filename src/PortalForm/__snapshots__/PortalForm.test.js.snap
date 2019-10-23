@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PortalForm component renders without crashing 1`] = `
+<form
+  className="portal__form"
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="name"
+  >
+    Enter A Huddle Name*
+    <input
+      id="name"
+      maxLength="24"
+      name="name"
+      required={true}
+      type="text"
+    />
+  </label>
+  <label
+    htmlFor="expiry_type"
+  >
+    Expiration Type*
+    <select
+      id="expiry_type"
+      name="expiry_type"
+      onChange={[Function]}
+      required={true}
+      value="day"
+    >
+      <option
+        value="day"
+      >
+        Day
+      </option>
+      <option
+        value="date"
+      >
+        Date
+      </option>
+    </select>
+  </label>
+  <label
+    htmlFor="day_options"
+  >
+    Expires In
+    <select
+      id="day_options"
+      name="day_options"
+    >
+      <option
+        value="day"
+      >
+        1 Day
+      </option>
+      <option
+        value="week"
+      >
+        1 Week
+      </option>
+      <option
+        value="2-weeks"
+      >
+        2 Weeks
+      </option>
+      <option
+        value="month"
+      >
+        1 Month
+      </option>
+      <option
+        value="3-months"
+      >
+        3 Months
+      </option>
+    </select>
+  </label>
+  <div
+    className="portal__form--password-container"
+  >
+    <label
+      className="portal__form--checkbox"
+      htmlFor="password_toggle"
+    >
+      Use Password?
+    </label>
+    <input
+      checked={false}
+      className="portal__form--checkbox"
+      id="password_toggle"
+      name="password_toggle"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+  <button
+    disabled={false}
+    type="submit"
+  >
+    Generate Portal
+  </button>
+</form>
+`;
