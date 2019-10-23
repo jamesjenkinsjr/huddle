@@ -6,15 +6,15 @@
   align-items: flex-start;
   width: 90%;
   margin: 5px auto;
-  color: #D7D7D9;
+  color: #d7d7d9;
 }
 
 .portal__message-form > button {
-  background-color: #3E3740;
-  color: #6DD93B;
+  background-color: #3e3740;
+  color: #6dd93b;
   width: 90%;
   margin: 20px auto;
-  border: 2px solid #6DD93B;
+  border: 2px solid #6dd93b;
   border-radius: 10px;
   padding: 10px;
 }
@@ -24,14 +24,14 @@
   margin-bottom: 5px;
   padding-bottom: 5px;
 }
-.portal__message-form > label > textarea, 
+.portal__message-form > label > textarea,
 .portal__message-form > label > input {
-  background-color: #D7D7D9;
+  background-color: #d7d7d9;
   width: 98%;
   margin-top: 5px;
   text-align: center;
   text-align-last: center;
-  border: 2px solid #D7D7D9;
+  border: 2px solid #d7d7d9;
   border-radius: 5px;
 }
 
@@ -39,10 +39,10 @@
   resize: none;
 }
 
-.portal__message-form > label > textarea:focus, 
+.portal__message-form > label > textarea:focus,
 .portal__message-form > label > input:focus {
   outline: unset;
-  box-shadow: 0 0 3pt 2pt #6DD93B;
+  box-shadow: 0 0 3pt 2pt #6dd93b;
 }
 
 .portal__message-form--password-container {
@@ -52,7 +52,8 @@
   justify-content: center;
   align-items: center;
 }
-label.portal__message-form--checkbox, input.portal__message-form--checkbox {
+label.portal__message-form--checkbox,
+input.portal__message-form--checkbox {
   margin: 10px;
 }
 

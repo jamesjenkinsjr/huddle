@@ -1,5 +1,5 @@
 .howto__container > header > h2 {
-  color: #83D95B;
+  color: #83d95b;
   font-size: 24px;
 }
 
@@ -10,7 +10,7 @@ ol.howto__overview {
 }
 
 ol.howto__overview > li {
-  margin: 16px auto; 
+  margin: 16px auto;
 }
 
 ol.howto__overview > li > p {
@@ -29,7 +29,6 @@ ol.howto__overview > li > ul > li {
 }
 
 @media screen and (min-width: 1024px) {
-
   .howto__container {
     width: 50%;
     margin: 0 auto;
@@ -42,7 +41,7 @@ ol.howto__overview > li > ul > li {
   ol.howto__overview > li > p {
     font-size: 18px;
   }
-  
+
   ol.howto__overview > li > ul > li {
     font-size: 16px;
   }

@@ -7,7 +7,7 @@ p {
 } */
 
 h2 {
-  color: #83D95B;
+  color: #83d95b;
   font-size: 24px;
   margin: 0;
 }
@@ -29,13 +29,13 @@ h2 {
   white-space: pre-line;
   width: 90%;
   margin: 10px auto;
-  border: 2px solid #6DD93B;
-  color: #D7D7D9;
+  border: 2px solid #6dd93b;
+  color: #d7d7d9;
 }
 
 .portal__message-list > li.portal__message-item:nth-child(even) {
-  border-top: 1px solid #D7D7D9;
-  border-bottom: 1px solid #D7D7D9;
+  border-top: 1px solid #d7d7d9;
+  border-bottom: 1px solid #d7d7d9;
 }
 
 .portal__message-list > li {
@@ -45,15 +45,15 @@ h2 {
 }
 .portal__expiry-datetime {
   font-size: 16px;
-  color: #D7D7D9;
+  color: #d7d7d9;
   text-align: center;
   margin: 4px auto;
 }
 .portal__close-session {
-  background-color: #83D95B;
-  color:#3E3740;
+  background-color: #83d95b;
+  color: #3e3740;
   cursor: pointer;
-  border: 2px solid #6DD93B;
+  border: 2px solid #6dd93b;
   border-radius: 10px;
   padding: 4px;
 }
@@ -61,14 +61,14 @@ h2 {
 .portal__empty-messages {
   width: 100%;
   text-align: center;
-  color: #D7D7D9;
+  color: #d7d7d9;
   margin: 24px auto;
-  border: 2px solid #6DD93B;
+  border: 2px solid #6dd93b;
   padding: 5px 0;
 }
 
 .portal__gate-form {
-  color: #D7D7D9;
+  color: #d7d7d9;
 }
 
 .portal__gate-form > label > input {
@@ -81,7 +81,6 @@ h2 {
 }
 
 @media screen and (min-width: 768px) {
-
   .portal__container {
     flex-direction: unset;
     flex-wrap: wrap;
@@ -95,7 +94,7 @@ h2 {
   .portal__message-list {
     max-height: 450px;
   }
-  
+
   .portal__gate-form {
     margin: 30% auto;
   }
@@ -154,5 +153,4 @@ h2 {
   .portal__gate-form > label > input {
     padding: 6px;
   }
-
 }

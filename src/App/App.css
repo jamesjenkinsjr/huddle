@@ -1,5 +1,5 @@
 html {
-  background-color: #3E3740;
+  background-color: #3e3740;
   min-height: 100vh;
 }
 
@@ -14,9 +14,9 @@ html {
 }
 
 h1 {
-  color: #D7D7D9;
+  color: #d7d7d9;
   font-size: 64px;
-  border-bottom: 5px solid #6DD93B;
+  border-bottom: 5px solid #6dd93b;
   display: inline;
 }
 
@@ -24,13 +24,13 @@ h1 {
   margin: 50px auto;
 }
 .App-header > a {
-  color: #6DD93B;
+  color: #6dd93b;
   text-decoration: none;
 }
 
 .App__error {
   text-align: center;
-  color: red
+  color: red;
 }
 
 @media screen and (min-width: 768px) {
@@ -41,7 +41,6 @@ h1 {
 }
 
 @media screen and (min-width: 1024px) {
-
   h1 {
     font-size: 88px;
   }

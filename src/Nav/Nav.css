@@ -9,13 +9,13 @@
 
 .nav__list > li {
   padding: 4px 2px;
-  border: 2px solid #6DD93B;
+  border: 2px solid #6dd93b;
   border-radius: 10px;
 }
 
 .nav__list > li > a {
   text-decoration: none;
-  color: #6DD93B;
+  color: #6dd93b;
 }
 
 @media screen and (min-width: 768px) {
@@ -31,9 +31,9 @@
     margin-bottom: 50px;
   }
   .nav__list > li:hover {
-    background-color: #6DD93B;
+    background-color: #6dd93b;
   }
   .nav__list > li:hover > a {
-    color: #3E3740;
+    color: #3e3740;
   }
 }
