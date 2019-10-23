@@ -172,7 +172,7 @@ export default class Portal extends React.Component {
       return (
         <section className="portal__container">
           <div className="portal__heading-container">
-            <div>
+            <div className="portal__message-list-heading">
               <h2 className="portal__title">{this.props.portal.name}</h2>
               <p className="portal__expiry-datetime">
                 Expires on{' '}

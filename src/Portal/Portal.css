@@ -52,6 +52,7 @@ h2 {
 .portal__close-session {
   background-color: #83D95B;
   color:#3E3740;
+  cursor: pointer;
   border: 2px solid #6DD93B;
   border-radius: 10px;
   padding: 4px;
@@ -109,12 +110,18 @@ h2 {
     margin: 12px 5%;
   }
 
+  .portal__message-list-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .portal__title {
     font-size: 48px;
   }
 
   .portal__expiry-datetime {
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .portal__empty-messages {
