@@ -44,7 +44,7 @@ export default class PortalForm extends React.Component {
     }
 
     if (this.state.expiry_type === 'date') {
-      expiry_timestamp = new Date(e.target.date.value)
+      expiry_timestamp = e.target.date.value
     }
 
     const name = e.target.name.value
@@ -82,7 +82,7 @@ export default class PortalForm extends React.Component {
     const offset = today.getTimezoneOffset() * 60000
     const tomorrow = today.setDate(today.getDate() + 1)
     const ISOTomorrow = new Date(tomorrow - offset).toISOString().slice(0, 16)
-    return isSafari && !iOS ? new Date(tomorrow).toLocaleString() : ISOTomorrow
+    return isSafari && !iOS ? new Date(tomorrow).toLocaleString() : ISOTomorrow.toLocaleString()
   }
 
   handlePasswordToggle = e => {
