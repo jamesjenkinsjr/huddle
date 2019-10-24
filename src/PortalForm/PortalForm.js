@@ -44,20 +44,28 @@ export default class PortalForm extends React.Component {
     }
 
     if (this.state.expiry_type === 'date') {
+      // iOS Safari needs defaultValue in ISO format without
+      // seconds to render its native datetime picker and it
+      // also natively tries to strip away timezone for its value
+      // based on the client locale, so a check is being done
+      // to confirm an iOS Safari browser and reapply timezone
+      // because the database already handles timezone offsets
 
-      // iOS Safari also presents creates its value for 
-      // datetime-local inputs differently, so a check is
-      // happening below to not convert to new Date object
-      // when source is iOS Safari
-      
       const ua = window.navigator.userAgent
       const isSafari = /^((?!chrome|android).)*safari/i.test(
         navigator.userAgent
       )
       const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
 
-      expiry_timestamp =
-        isSafari && iOS ? e.target.date.value : new Date(e.target.date.value)
+      if (isSafari && iOS) {
+        const receivedDatetime = new Date(e.target.date.value)
+        const timezone = new Date().getTimezoneOffset() * 60000
+        expiry_timestamp = new Date(
+          receivedDatetime.setTime(receivedDatetime.getTime() + timezone)
+        )
+      } else {
+        expiry_timestamp = new Date(e.target.date.value)
+      }
     }
 
     const name = e.target.name.value
@@ -88,11 +96,11 @@ export default class PortalForm extends React.Component {
   }
 
   generateTomorrowDatetime = () => {
-    // macOS Safari has no default datetime picker for
+    // macOS Safari / Firefox have no default datetime picker for
     // handling the HTML5 datetime-local input and so
-    // renders raw strings. Firefox apparently is the same
-    // so these are getting handled differently than iOS Safari
-    // and Chrome. 
+    // render raw strings, so a check is being done to account for
+    // these browsers and provide the optimal datetime format for
+    // the default value of the field
 
     const ua = window.navigator.userAgent
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
@@ -101,11 +109,19 @@ export default class PortalForm extends React.Component {
     const today = new Date()
     const offset = today.getTimezoneOffset() * 60000
     const tomorrow = today.setDate(today.getDate() + 1)
-    const ISOTomorrow = new Date(tomorrow - offset).toISOString().slice(0, 16)
+    const ISOTZTomorrow = new Date(tomorrow - offset).toISOString().slice(0, 16)
 
-    return (isSafari && !iOS) || isFirefox
-      ? new Date(tomorrow).toLocaleString()
-      : ISOTomorrow.toLocaleString()
+    if (isFirefox || (isSafari && !iOS)) {
+      return new Date(tomorrow).toLocaleString()
+    } else {
+      // Chrome and iOS Safari want an ISO string and
+      // to render the defaultValue with correct timezone
+      // the offset needs to be applied to the value
+      // this causes a discrepancy when actually sending the value
+      // so more work is done when creating expiry to reversed the
+      // timezone offset
+      return ISOTZTomorrow.toLocaleString()
+    }
   }
 
   handlePasswordToggle = e => {
