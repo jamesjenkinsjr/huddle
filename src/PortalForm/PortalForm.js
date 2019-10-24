@@ -75,12 +75,14 @@ export default class PortalForm extends React.Component {
   }
 
   generateTomorrowDatetime = () => {
+    const ua = window.navigator.userAgent;
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
     const today = new Date()
     const offset = today.getTimezoneOffset() * 60000
     const tomorrow = today.setDate(today.getDate() + 1)
     const ISOTomorrow = new Date(tomorrow - offset).toISOString().slice(0, 16)
-    return isSafari ? new Date(tomorrow).toLocaleString() : ISOTomorrow
+    return isSafari && !iOS ? new Date(tomorrow).toLocaleString() : ISOTomorrow
   }
 
   handlePasswordToggle = e => {
