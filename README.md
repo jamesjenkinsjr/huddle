@@ -1,7 +1,7 @@
 # Huddle
 
 - Live version: https://huddle-app-client.herokuapp.com/
-- Required Huddle API:
+- Huddle API:
   - Live: https://huddle-app-server.herokuapp.com/api
   - Repository: https://github.com/jamesjenkinsjr/huddle-server
 
