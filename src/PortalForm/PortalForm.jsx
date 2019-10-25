@@ -44,6 +44,14 @@ export default class PortalForm extends React.Component {
     }
 
     if (this.state.expiry_type === 'date') {
+      if (
+        isNaN(Date.parse(e.target.date.value)) ||
+        Date.parse(e.target.date.value) < 0
+      ) {
+        return this.setState({
+          error: 'Invalid Expiration',
+        })
+      }
       // iOS Safari needs defaultValue in ISO format without
       // seconds to render its native datetime picker and it
       // also natively tries to strip away timezone for its value
@@ -182,7 +190,14 @@ export default class PortalForm extends React.Component {
         )}
         <label htmlFor="name">
           Enter A Huddle Name*
-          <input type="text" name="name" id="name" placeholder="Ex. 'Work Discussion'" maxLength="24" required />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Ex. 'Work Discussion'"
+            maxLength="24"
+            required
+          />
         </label>
         <label htmlFor="expiry_type">
           Expiration Type*

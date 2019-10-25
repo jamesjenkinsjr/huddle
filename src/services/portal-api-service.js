@@ -26,8 +26,18 @@ const PortalAPIService = {
     }).then(res => {
       if (res.ok) {
         return res.json()
+      } else if (res.status === 400) {
+        return res.json().then(resJSON => {
+          if (resJSON.error === 'expiry_timestamp is invalid') {
+            throw new Error(
+              'Invalid expiration. Please check format and that date and time are in the future.'
+            )
+          } else if (resJSON.error === 'Expiry is required') {
+            throw new Error('Expiration is required')
+          }
+        })
       }
-      throw new Error('Failed to generate new portal - please try again')
+      throw new Error('Failed to fetch portal - please try again')
     })
   },
   getPortalMessages(id) {

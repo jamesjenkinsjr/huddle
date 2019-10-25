@@ -13,6 +13,7 @@ exports[`PortalForm component renders without crashing 1`] = `
       id="name"
       maxLength="24"
       name="name"
+      placeholder="Ex. 'Work Discussion'"
       required={true}
       type="text"
     />
