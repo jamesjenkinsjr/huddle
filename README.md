@@ -10,6 +10,16 @@
 - To run: `npm start`
 - To test: `npm test`
 
+## Description
+Huddle was created to solve a simple problem: easily accessible lines of communication without a need to make new accounts, give out personal information, or worry about leaving someone out.
+
+With Huddle, everyone with your unique Huddle room link (generated using a V4 UUID) can immediately provide basic, private information and jump into the conversation. No more forwarded emails, massive laggy text message groups, or social media friend requests. Simply generate a huddle room, provide the link to anyone, and get started being productive!
+
+## Technologies
+- ReactJS
+- HTML5
+- CSS3
+
 ## Screenshots
 
 ### Desktop
@@ -26,13 +36,3 @@
 
 #### Portal
 ![huddle-portal-mobile](https://user-images.githubusercontent.com/13262817/67406739-75a8dd80-f584-11e9-9411-d8bbc61c7d53.png)
-
-## Description
-Huddle was created to solve a simple problem: easily accessible lines of communication without a need to make new accounts, give out personal information, or worry about leaving someone out.
-
-With Huddle, everyone with your unique Huddle room link (generated using a V4 UUID) can immediately provide basic, private information and jump into the conversation. No more forwarded emails, massive laggy text message groups, or social media friend requests. Simply generate a huddle room, provide the link to anyone, and get started being productive!
-
-## Technologies
-- ReactJS
-- HTML5
-- CSS3
