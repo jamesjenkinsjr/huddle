@@ -26,16 +26,28 @@ export default () => {
           <li>
             <p>
               Optionally set a password on your portal to futher protect access
-              to the conversation. This password is encrypted and never stored locally.
+              to the conversation. This password is encrypted and never stored
+              locally.
             </p>
           </li>
-          <li><p>Submit the Huddle portal form</p></li>
-          <li><p>IMPORANT! Copy and safeguard the URL to your portal. This is your ONLY
-            resource for accessing the portal. If it is lost, your portal will not be
-            retrievable.</p></li>
-          <li><p>Share your portal URL with anyone, anywhere. The chat form will persist 
-            the name you enter, allowing for quick messaging in seconds. Use SHIFT + ENTER
-            to create paragraphs for longer messages.</p></li>
+          <li>
+            <p>Submit the Huddle portal form</p>
+          </li>
+          <li>
+            <p>
+              IMPORANT! Copy and safeguard the URL to your portal. This is your
+              ONLY resource for accessing the portal. If it is lost, your portal
+              will not be retrievable.
+            </p>
+          </li>
+          <li>
+            <p>
+              Share your portal URL with anyone, anywhere. The chat form will
+              persist the name you enter, allowing for quick messaging in
+              seconds. Use SHIFT + ENTER to create paragraphs for longer
+              messages.
+            </p>
+          </li>
         </ol>
       </section>
     </div>

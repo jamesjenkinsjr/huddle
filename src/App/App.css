@@ -59,7 +59,8 @@ h1 {
 }
 
 .App__footer > li > a:hover {
-  color: #6dd93b;
+  text-decoration: underline;
+  text-decoration-color: #6dd93b;
 }
 
 @media screen and (min-width: 768px) {

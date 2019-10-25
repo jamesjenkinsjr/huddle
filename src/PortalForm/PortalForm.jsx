@@ -55,8 +55,8 @@ export default class PortalForm extends React.Component {
         navigator.userAgent
       )
       const isIOS =
-      /iPad|iPhone|iPod/.test(navigator.platform) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        /iPad|iPhone|iPod/.test(navigator.platform) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
 
       if (isSafari && isIOS) {
         const receivedDatetime = new Date(e.target.date.value)
@@ -130,6 +130,7 @@ export default class PortalForm extends React.Component {
     e.stopPropagation()
     this.setState({
       use_password: !this.state.use_password,
+      error: '',
     })
   }
 
