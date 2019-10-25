@@ -13,6 +13,8 @@ h2 {
 }
 
 .portal__container {
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,14 +60,8 @@ h2 {
   padding: 4px;
 }
 
-.portal__close-session:hover {
-  background-color: #3e3740;
-  border-color: red;
-  color: red;
-}
-
 .portal__empty-messages {
-  width: 100%;
+  width: 90%;
   text-align: center;
   color: #d7d7d9;
   margin: 24px auto;
@@ -127,6 +123,12 @@ h2 {
 
   .portal__expiry-datetime {
     font-size: 18px;
+  }
+
+  .portal__close-session:hover {
+    background-color: #3e3740;
+    border-color: red;
+    color: red;
   }
 
   .portal__empty-messages {

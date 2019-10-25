@@ -1,10 +1,12 @@
 html {
+  position: relative;
   background-color: #3e3740;
   min-height: 100vh;
 }
 
 footer {
-  margin-top: 25%;
+  position: absolute;
+  bottom: 0;
   background-color: #d7d7d9;
   width: 100%!important;
   padding: 5px 0;
@@ -13,7 +15,7 @@ footer {
 .App {
   text-align: center;
   font-family: 'Nunito', sans-serif;
-  padding: 0 10px;
+  padding-bottom: 100px;
 }
 
 .App-link {
@@ -62,7 +64,6 @@ h1 {
 
 @media screen and (min-width: 768px) {
   html {
-    /* width: 80%; */
     margin: 0 auto;
   }
 }

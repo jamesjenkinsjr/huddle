@@ -43,6 +43,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <>
       <div className="App">
         <header className="App-header">
           <Link to="/">
@@ -86,13 +87,14 @@ class App extends React.Component {
           </>
         )}
         {this.state.error && <p className="App__error">{this.state.error}</p>}
-        <footer>
-          <ul className="App__footer">
-            <li>E-mail: <a href="mailto:me@jamesjenkins.dev">me@jamesjenkins.dev</a></li>
-            <li>© {new Date().getFullYear()} - James Jenkins</li>
-          </ul>
-        </footer>
       </div>
+      <footer>
+      <ul className="App__footer">
+        <li>E-mail: <a href="mailto:me@jamesjenkins.dev">me@jamesjenkins.dev</a></li>
+        <li>© {new Date().getFullYear()} - James Jenkins</li>
+      </ul>
+    </footer>
+    </>
     )
   }
 }
