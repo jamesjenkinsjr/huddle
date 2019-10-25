@@ -12,11 +12,17 @@
 .portal__message-form > button {
   background-color: #3e3740;
   color: #6dd93b;
+  cursor: pointer;
   width: 90%;
   margin: 20px auto;
   border: 2px solid #6dd93b;
   border-radius: 10px;
   padding: 10px;
+}
+
+.portal__message-form > button:hover {
+  background-color: #6dd93b;
+  color: #3e3740;
 }
 
 .portal__message-form > label {

@@ -58,6 +58,12 @@ h2 {
   padding: 4px;
 }
 
+.portal__close-session:hover {
+  background-color: #3e3740;
+  border-color: red;
+  color: red;
+}
+
 .portal__empty-messages {
   width: 100%;
   text-align: center;

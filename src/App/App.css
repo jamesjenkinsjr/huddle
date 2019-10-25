@@ -3,6 +3,13 @@ html {
   min-height: 100vh;
 }
 
+footer {
+  margin-top: 25%;
+  background-color: #d7d7d9;
+  width: 100%!important;
+  padding: 5px 0;
+}
+
 .App {
   text-align: center;
   font-family: 'Nunito', sans-serif;
@@ -33,9 +40,29 @@ h1 {
   color: red;
 }
 
+.App__footer {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.App__footer > li {
+  color: #3e3740;
+  font-size: 12px;
+}
+
+.App__footer > li > a {
+  text-decoration: none;
+  color: #3e3740;
+}
+
+.App__footer > li > a:hover {
+  color: #6dd93b;
+}
+
 @media screen and (min-width: 768px) {
   html {
-    width: 80%;
+    /* width: 80%; */
     margin: 0 auto;
   }
 }

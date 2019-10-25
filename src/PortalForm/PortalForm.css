@@ -20,6 +20,11 @@
   padding: 10px;
 }
 
+.portal__form > button:hover {
+  background-color: #6dd93b;
+  color: #3e3740;
+}
+
 .portal__form > label {
   width: 100%;
   margin: 0 auto;
