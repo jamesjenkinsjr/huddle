@@ -51,13 +51,14 @@ export default class PortalForm extends React.Component {
       // to confirm an iOS Safari browser and reapply timezone
       // because the database already handles timezone offsets
 
-      const ua = window.navigator.userAgent
       const isSafari = /^((?!chrome|android).)*safari/i.test(
         navigator.userAgent
       )
-      const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
+      const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.platform) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
 
-      if (isSafari && iOS) {
+      if (isSafari && isIOS) {
         const receivedDatetime = new Date(e.target.date.value)
         const timezone = new Date().getTimezoneOffset() * 60000
         expiry_timestamp = new Date(
@@ -102,16 +103,17 @@ export default class PortalForm extends React.Component {
     // these browsers and provide the optimal datetime format for
     // the default value of the field
 
-    const ua = window.navigator.userAgent
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-    const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
-    const isFirefox = !!ua.match(/Firefox/i)
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.platform) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    const isFirefox = !!navigator.userAgent.match(/Firefox/i)
     const today = new Date()
     const offset = today.getTimezoneOffset() * 60000
     const tomorrow = today.setDate(today.getDate() + 1)
     const ISOTZTomorrow = new Date(tomorrow - offset).toISOString().slice(0, 16)
 
-    if (isFirefox || (isSafari && !iOS)) {
+    if (isFirefox || (isSafari && !isIOS)) {
       return new Date(tomorrow).toLocaleString()
     } else {
       // Chrome and iOS Safari want an ISO string and
@@ -120,7 +122,7 @@ export default class PortalForm extends React.Component {
       // this causes a discrepancy when actually sending the value
       // so more work is done when creating expiry to reversed the
       // timezone offset
-      return ISOTZTomorrow.toLocaleString()
+      return ISOTZTomorrow
     }
   }
 
