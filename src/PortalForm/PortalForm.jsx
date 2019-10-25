@@ -182,7 +182,7 @@ export default class PortalForm extends React.Component {
         )}
         <label htmlFor="name">
           Enter A Huddle Name*
-          <input type="text" name="name" id="name" maxLength="24" required />
+          <input type="text" name="name" id="name" placeholder="Ex. 'Work Discussion'" maxLength="24" required />
         </label>
         <label htmlFor="expiry_type">
           Expiration Type*
@@ -216,6 +216,7 @@ export default class PortalForm extends React.Component {
               type="datetime-local"
               id="date"
               name="date"
+              placeholder="01/01/1970 11:59 PM"
               defaultValue={this.generateTomorrowDatetime()}
               required
             ></input>
