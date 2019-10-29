@@ -51,13 +51,19 @@ h2 {
   text-align: center;
   margin: 4px auto;
 }
-.portal__close-session {
+.portal__close-session, .portal__copy-button {
   background-color: #83d95b;
   color: #3e3740;
   cursor: pointer;
   border: 2px solid #6dd93b;
   border-radius: 10px;
   padding: 4px;
+  margin: 0 4px;
+}
+
+.portal__copy-button:hover {
+  background-color: #3e3740;
+  color: #6dd93b;
 }
 
 .portal__empty-messages {
@@ -114,6 +120,7 @@ h2 {
   .portal__message-list-heading {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
   }
 

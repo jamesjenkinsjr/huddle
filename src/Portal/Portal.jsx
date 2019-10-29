@@ -154,6 +154,45 @@ export default class Portal extends React.Component {
     }
   }
 
+  handleCopyURL = e => {
+    const copyButton = document.getElementById('copy')
+    // Chrome and Firefox allow for a much cleaner copy
+    // to clipboard experience
+    if (!!navigator.clipboard) {
+      navigator.clipboard
+        .writeText(e.target.value)
+        .then(() => {
+          copyButton.innerHTML = 'Copied Portal URL!'
+          setTimeout(() => (copyButton.innerHTML = 'Copy Portal URL'), 2000)
+        })
+        .catch(err => {
+          copyButton.innerHTML = 'Try Again'
+          setTimeout(() => (copyButton.innerHTML = 'Copy Portal URL'), 2000)
+        })
+    } else {
+      // for Safari and iOS devices we leverage an off-screen
+      // input that we can store the URL in and select and copy from
+      const input = document.getElementById('copy_data')
+      input.setAttribute('value', e.target.value)
+      const el = input
+      const editable = el.contentEditable
+      const readOnly = el.readOnly
+      const range = document.createRange()
+      range.selectNodeContents(el)
+      const selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
+      el.focus()
+      el.setSelectionRange(0, 999999)
+      el.contentEditable = editable
+      el.readOnly = readOnly
+      document.execCommand('copy')
+
+      copyButton.innerHTML = 'Copied Portal URL!'
+      setTimeout(() => (copyButton.innerHTML = 'Copy Portal URL'), 2000)
+    }
+  }
+
   render() {
     const messages = this.props.messages.map(message => (
       <Message
@@ -179,12 +218,30 @@ export default class Portal extends React.Component {
                 {new Date(this.props.portal.expiry_timestamp).toLocaleString()}
               </p>
             </div>
-            <button
-              className="portal__close-session"
-              onClick={this.handleClosePortal}
-            >
-              Exit Huddle
-            </button>
+            <div className="portal__heading-button-container">
+              <input
+                type="text"
+                name="copy_data"
+                id="copy_data"
+                // select will not work with display: 'none' so instead
+                // just banish the input that houses portal URL
+                style={{ position: 'absolute', left: '-9999px' }}
+              />
+              <button
+                id="copy"
+                className="portal__copy-button"
+                value={window.location.href}
+                onClick={this.handleCopyURL}
+              >
+                Copy Portal Link
+              </button>
+              <button
+                className="portal__close-session"
+                onClick={this.handleClosePortal}
+              >
+                Exit Huddle
+              </button>
+            </div>
           </div>
           {this.props.messages.length > 0 && !this.state.loading && (
             <ul className="portal__message-list" tabIndex="0">
