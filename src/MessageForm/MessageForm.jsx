@@ -41,7 +41,6 @@ class MessageForm extends React.Component {
 
   getNameCookie = () => {
     const nameCookie = this.props.cookies.get(`name-${this.props.portal_id}`)
-    console.log(nameCookie)
     return nameCookie ? nameCookie : ''
   }
 
