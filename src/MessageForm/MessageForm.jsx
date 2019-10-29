@@ -1,8 +1,9 @@
 import React from 'react'
+import { withCookies } from 'react-cookie'
 import './MessageForm.css'
 import MessageService from '../services/message-api-service'
 
-export default class MessageForm extends React.Component {
+class MessageForm extends React.Component {
   state = {
     error: '',
   }
@@ -33,12 +34,23 @@ export default class MessageForm extends React.Component {
     }
   }
 
+  setNameCookie = e => {
+    e.preventDefault()
+    this.props.cookies.set(`name-${this.props.portal_id}`, e.target.value, {path: `/${this.props.portal_id}`})
+  }
+
+  getNameCookie = () => {
+    const nameCookie = this.props.cookies.get(`name-${this.props.portal_id}`)
+    console.log(nameCookie)
+    return nameCookie ? nameCookie : ''
+  }
+
   render() {
     return (
       <form className="portal__message-form" onSubmit={this.handleSubmit}>
         <label htmlFor="author">
           Name
-          <input type="text" name="author" id="author" />
+          <input type="text" name="author" id="author" defaultValue={this.getNameCookie()} onChange={this.setNameCookie} />
         </label>
         <label htmlFor="content">
           Message
@@ -56,3 +68,5 @@ export default class MessageForm extends React.Component {
     )
   }
 }
+
+export default withCookies(MessageForm)
